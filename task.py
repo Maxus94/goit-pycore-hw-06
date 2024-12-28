@@ -58,24 +58,25 @@ class Record:
 
 class AddressBook(UserDict):
     # реалізація класу
-    # def __init__(self):    
-        # self.records = {}
+    def __init__(self):    
+        self.data = {}
     
     def add_record(self, record):        
-        self.data[record.name] = record        
+        self.data[record.name.value] = record        
     def find(self, name):        
         print(self.data)
-        # return self.data[name]
-
-    # def find_record(self, name):
-    #     record_to_find = []
-    #     for record in self.records:
-    #         if record.name.value == name:
-    #             record_to_find.append(record)
-        
+        return(self.data[name])
+    def delete(self, name):
+        self.data.pop(name)
+               
     def __str__(self):        
-        return f"Record name: {self.data}"
-        # return f"Record name: {self.data.name}, phones: {'; '.join(p for p in self.phones)}"
+        # text = ''
+        # for name, record in self.data.items():
+        #     text = text + str(record.name.value)
+        # print(text)
+
+        # return f"Record name: {self.data}"
+        return f"Record name: {self.data.record.name.value}, phones: {'; '.join(p for p in self.phones)}"
 
 book = AddressBook()
 john_record = Record("John")
@@ -90,4 +91,7 @@ for name, record in book.data.items():
     print(record)
 
 john = book.find("John")
-print(john)
+print("Print", john)
+print(book)
+book.delete("Jane")
+print(book)
